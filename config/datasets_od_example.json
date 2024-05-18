@@ -1,0 +1,18 @@
+{
+  "train": [
+    {
+      "root": "/home/jupyter/til-ai-24-advanced/images",
+      "anno": "/home/jupyter/Open-GroundingDino/config/test.jsonl",
+      "label_map": "/home/jupyter/Open-GroundingDino/config/label_map.json",
+      "dataset_mode": "odvg"
+    }
+  ],
+  "val": [
+    {
+      "root": "/home/jupyter/til-ai-24-advanced/images",
+      "anno": "/home/jupyter/Open-GroundingDino/config/test.jsonl",
+      "label_map": null,
+      "dataset_mode": "coco"
+    }
+  ]
+}

@@ -7,9 +7,6 @@ NODE_RANK=${NODE_RANK:-0}
 PORT=${PORT:-29500}
 MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
 
-# Change ``pretrain_model_path`` to use a different pretrain. 
-# (e.g. GroundingDINO pretrain, DINO pretrain, Swin Transformer pretrain.)
-# If you don't want to use any pretrained model, just ignore this parameter.
 
 python3 main.py \
         --output_dir ${OUTPUT_DIR} \
@@ -25,4 +22,4 @@ python3 main.py \
 
 # python3 tools/inference_on_a_image.py   -c tools/GroundingDINO_SwinT_OGC.py   -p logs/checkpoint0000.pth   -i ../til-ai-24-advanced/images/image_0.jpg   -t "grey missile . red, white, and blue light aircraft . green and black missile . white and red helicopter ."   -o output
 
-# bash train_dist.sh 1 config/cfg_odvg.py config/datasets_od_example.json logs 
+# bash train_dist.sh 1 config/cfg_odvg.py config/dataset_OD.json logs 

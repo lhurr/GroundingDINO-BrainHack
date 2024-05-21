@@ -22,4 +22,4 @@ python3 main.py \
 
 # python3 tools/inference_on_a_image.py   -c tools/GroundingDINO_SwinT_OGC.py   -p logs/checkpoint0000.pth   -i ../til-ai-24-advanced/images/image_0.jpg   -t "grey missile . red, white, and blue light aircraft . green and black missile . white and red helicopter ."   -o output
 
-# bash train_dist.sh 1 config/cfg_odvg.py config/dataset_OD.json logs 
+# bash train_dist.sh 1 config/cfg_gdinoT.py config/dataset_OD.json logs 

@@ -7,13 +7,14 @@
 
 
 # Installation
-1. pip install -r requirements.txt 
-2. cd models/GroundingDINO/ops
-3. python3 setup.py build install --user
-4. git clone https://github.com/IDEA-Research/GroundingDINO.git
-5. cd GroundingDINO/
-6. pip install --no-build-isolation -e . 
-
+```bash
+pip install -r requirements.txt 
+cd models/GroundingDINO/ops
+python3 setup.py build install --user
+git clone https://github.com/IDEA-Research/GroundingDINO.git
+cd GroundingDINO/
+pip install --no-build-isolation -e . 
+```
 
 ## References:
 - [Open GroundingDino](https://github.com/longzw1997/Open-GroundingDino)

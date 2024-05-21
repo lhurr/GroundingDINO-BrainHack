@@ -13,3 +13,8 @@
 4. git clone https://github.com/IDEA-Research/GroundingDINO.git
 5. cd GroundingDINO/
 6. pip install --no-build-isolation -e . 
+
+
+## References:
+- [Open GroundingDino](https://github.com/longzw1997/Open-GroundingDino)
+- [IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO)

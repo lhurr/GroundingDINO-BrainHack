@@ -1,4 +1,4 @@
-# GroundingDINO setup
+# Minimal setup for fine-tuning GroundingDINO
 1. Modify config/dataset_OD.json, config/label_map.json and config/test.json
 2. Download [BERT](https://www.kaggle.com/datasets/virajjayant/bertbaseuncased) & [Grounding Dino weights](https://huggingface.co/alexgenovese/background-workflow/blob/1cbf8c24aa8a2e8d5ca6871800442b35ff6f9d48/groundingdino_swint_ogc.pth)
 3. Commands to run & inference using SwinT model

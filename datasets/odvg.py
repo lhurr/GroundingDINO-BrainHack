@@ -231,7 +231,7 @@ def build_odvg(image_set, args, datasetinfo):
     try:
         strong_aug = args.strong_aug
     except:
-        strong_aug = False
+        strong_aug = True
     print(img_folder, ann_file, label_map)
     dataset = ODVGDataset(img_folder, ann_file, label_map, max_labels=args.max_labels,
             transforms=make_coco_transforms(image_set, fix_size=args.fix_size, strong_aug=strong_aug, args=args), 

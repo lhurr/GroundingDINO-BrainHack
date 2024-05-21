@@ -13,8 +13,8 @@ python3 main.py \
         -c ${CFG} \
         --datasets ${DATASETS}  \
         --pretrain_model_path groundingdino_swint_ogc.pth \
-        --options text_encoder_type=bert-base-uncased \
-        --resume logs/checkpoint0001.pth
+        --options text_encoder_type=bert-base-uncased
+# --resume logs/checkpoint0001.pth
         
         
 

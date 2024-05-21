@@ -3,8 +3,6 @@ import os
 import numpy as np
 import torch
 from PIL import Image, ImageDraw, ImageFont
-
-# please make sure https://github.com/IDEA-Research/GroundingDINO is installed correctly.
 import groundingdino.datasets.transforms as T
 from groundingdino.models import build_model
 from groundingdino.util import box_ops

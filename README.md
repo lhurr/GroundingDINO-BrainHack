@@ -15,6 +15,14 @@ git clone https://github.com/IDEA-Research/GroundingDINO.git
 cd GroundingDINO/
 pip install --no-build-isolation -e . 
 ```
+## Potential Errors
+The detected CUDA version (11.8) mismatches the version that was used to compile PyTorch (12.1)
+```
+pip uninstall torch
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+
 
 ## References:
 - [Open GroundingDino](https://github.com/longzw1997/Open-GroundingDino)

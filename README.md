@@ -19,7 +19,7 @@ pip install --no-build-isolation -e .
 The detected CUDA version (11.8) mismatches the version that was used to compile PyTorch (12.1)
 ```
 pip uninstall torch
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --upgrade --force-reinstall
 ```
 
 

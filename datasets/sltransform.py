@@ -7,6 +7,7 @@ import os
 import torchvision.transforms.functional as F
 import numpy as np
 import random
+import cv2
 
 from .random_crop import random_crop
 from util.box_ops import box_cxcywh_to_xyxy, box_xyxy_to_cxcywh
@@ -217,13 +218,16 @@ class Albumentations:
     def __init__(self):
         import albumentations as A
         self.transform = A.Compose([
-            A.Blur(p=0.01),
-            A.MedianBlur(p=0.01),
-            A.ToGray(p=0.01),
-            A.CLAHE(p=0.01),
-            A.RandomBrightnessContrast(p=0.005),
-            A.RandomGamma(p=0.005),
-            A.ImageCompression(quality_lower=75, p=0.005)],
+            A.ShiftScaleRotate(p=1, shift_limit=0.04, scale_limit=0.1, rotate_limit=180, interpolation=cv2.INTER_CUBIC, border_mode=cv2.BORDER_CONSTANT, value=0),
+            A.GaussNoise(p=0.5, per_channel=True, var_limit=(1000, 5000)),
+            A.ISONoise(p=0.5, intensity=(0.1, 0.5), color_shift=(0.03, 0.06))],
+            # A.Blur(p=0.01),
+            # A.MedianBlur(p=0.01),
+            # A.ToGray(p=0.01),
+            # A.CLAHE(p=0.01),
+            # A.RandomBrightnessContrast(p=0.005),
+            # A.RandomGamma(p=0.005),
+            # A.ImageCompression(quality_lower=75, p=0.005)],
             bbox_params=A.BboxParams(format='pascal_voc', label_fields=['class_labels']))
 
     def __call__(self, img, target, p=1.0):

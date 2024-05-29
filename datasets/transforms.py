@@ -8,7 +8,8 @@ import PIL
 import torch
 import torchvision.transforms as T
 import torchvision.transforms.functional as F
-
+from torchvision.transforms import Normalize, Compose, RandomResizedCrop, InterpolationMode, ToTensor, Resize, \
+    CenterCrop, ColorJitter, Grayscale
 from util.box_ops import box_xyxy_to_cxcywh
 from util.misc import interpolate
 
@@ -266,6 +267,34 @@ class Normalize(object):
             target["boxes"] = boxes
         return image, target
 
+
+class Color_Jitter(object):
+    """
+    Apply Color Jitter to a PIL image.
+    """
+    def __init__(self, brightness=0., contrast=0., saturation=0., hue=0., p=0.8):
+        assert 0. <= p <= 1.
+        self.p = p
+        self.transf = ColorJitter(brightness=brightness, contrast=contrast, saturation=saturation, hue=hue)
+
+    def __call__(self, img):
+        if random.random() < self.p:
+            return self.transf(img)
+        else:
+            return img
+
+
+class Gray_Scale(object):
+    def __init__(self, p=0.2):
+        assert 0. <= p <= 1.
+        self.p = p
+        self.transf = Grayscale(num_output_channels=3)
+
+    def __call__(self, img):
+        if random.random() < self.p:
+            return self.transf(img)
+        else:
+            return img
 
 class Compose(object):
     def __init__(self, transforms):

@@ -6,7 +6,7 @@
    - Inference: ```python tools/inference_on_a_image.py   -c tools/<SWIN T/B>.py   -p logs/<CHKPT>.pth   -i <IMG_PATH>.jpg   -t "<CLASS_NAMES>"   -o output```
 
 
-# Set up
+# Set up (Tested on python 3.7)
 ```bash
 pip install -r requirements.txt 
 cd models/GroundingDINO/ops

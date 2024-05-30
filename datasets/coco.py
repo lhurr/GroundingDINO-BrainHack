@@ -460,7 +460,7 @@ class ConvertCocoPolysToMask(object):
         return image, target
 
 
-def make_coco_transforms(image_set, fix_size=False, strong_aug=False, args=None):
+def make_coco_transforms(image_set, fix_size=False, strong_aug=True, args=None):
 
     normalize = T.Compose([
         T.ToTensor(),
@@ -518,12 +518,13 @@ def make_coco_transforms(image_set, fix_size=False, strong_aug=False, args=None)
                         T.RandomResize(scales, max_size=max_size),
                     ])
                 ),
-                SLT.RandomSelectMulti([
-                    SLT.RandomCrop(),
-                    SLT.LightingNoise(),
+                SLT.Albumentations(),
+                # SLT.RandomSelectMulti([
+                    # SLT.RandomCrop(),
+                    # SLT.LightingNoise(),
                     SLT.AdjustBrightness(2),
-                    SLT.AdjustContrast(2),
-                ]),
+                    # SLT.AdjustContrast(2),
+                # ]),
                 normalize,
             ])
         
@@ -638,12 +639,3 @@ def build(image_set, args, datasetinfo):
     return dataset
 
 
-if __name__ == "__main__":
-    # Objects365 Val example
-    dataset_o365 = CocoDetection(
-            '/path/Objects365/train/',
-            "/path/Objects365/slannos/anno_preprocess_train_v2.json",
-            transforms=None,
-            return_masks=False,
-        )
-    print('len(dataset_o365):', len(dataset_o365))

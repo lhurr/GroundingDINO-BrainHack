@@ -186,12 +186,13 @@ def make_coco_transforms(image_set, fix_size=False, strong_aug=False, args=None)
                         T.RandomResize(scales, max_size=max_size),
                     ])
                 ),
-                SLT.RandomSelectMulti([
-                    SLT.RandomCrop(),
-                    SLT.LightingNoise(),
+                SLT.Albumentations(),
+                # SLT.RandomSelectMulti([
+                    # SLT.RandomCrop(),
+                    # SLT.LightingNoise(),
                     SLT.AdjustBrightness(2),
-                    SLT.AdjustContrast(2),
-                ]),
+                    # SLT.AdjustContrast(2),
+                # ]),
                 normalize,
             ])
         
@@ -239,15 +240,3 @@ def build_odvg(image_set, args, datasetinfo):
     return dataset
 
 
-if __name__=="__main__":
-    dataset_vg = ODVGDataset("path/GRIT-20M/data/","path/GRIT-20M/anno/grit_odvg_10k.jsonl",)
-    print(len(dataset_vg))
-    data = dataset_vg[random.randint(0, 100)] 
-    print(data)
-    dataset_od = ODVGDataset("pathl/V3Det/",
-        "path/V3Det/annotations/v3det_2023_v1_all_odvg.jsonl",
-        "path/V3Det/annotations/v3det_label_map.json",
-    )
-    print(len(dataset_od))
-    data = dataset_od[random.randint(0, 100)] 
-    print(data)

@@ -8,7 +8,6 @@ import torchvision.transforms.functional as F
 import numpy as np
 import random
 import cv2
-
 from .random_crop import random_crop
 from util.box_ops import box_cxcywh_to_xyxy, box_xyxy_to_cxcywh
 
@@ -218,15 +217,16 @@ class Albumentations:
     def __init__(self):
         import albumentations as A
         self.transform = A.Compose([
-            A.ShiftScaleRotate(p=1, shift_limit=0.04, scale_limit=0.1, rotate_limit=180, interpolation=cv2.INTER_CUBIC, border_mode=cv2.BORDER_CONSTANT, value=0),
-            A.GaussNoise(p=0.5, per_channel=True, var_limit=(1000, 5000)),
-            A.ISONoise(p=0.5, intensity=(0.1, 0.5), color_shift=(0.03, 0.06))],
+            # A.ShiftScaleRotate(p=1.0, shift_limit=0.04, scale_limit=0.1, rotate_limit=180, interpolation=cv2.INTER_CUBIC, border_mode=cv2.BORDER_CONSTANT, value=0),
+            A.GaussNoise(p=0.6, per_channel=True, var_limit=(1000, 5000)),
+            A.ISONoise(p=0.6, intensity=(0.1, 0.5), color_shift=(0.03, 0.06)),
+            A.RandomGamma(p=0.2),
+        ],
             # A.Blur(p=0.01),
             # A.MedianBlur(p=0.01),
             # A.ToGray(p=0.01),
             # A.CLAHE(p=0.01),
             # A.RandomBrightnessContrast(p=0.005),
-            # A.RandomGamma(p=0.005),
             # A.ImageCompression(quality_lower=75, p=0.005)],
             bbox_params=A.BboxParams(format='pascal_voc', label_fields=['class_labels']))
 
@@ -239,13 +239,16 @@ class Albumentations:
         boxes_raw = target['boxes']
         labels_raw = target['labels']
         img_np = np.array(img)
-        if self.transform and random.random() < p:
+        if random.random() < p:
             new_res = self.transform(image=img_np, bboxes=boxes_raw, class_labels=labels_raw)  # transformed
             boxes_new = torch.Tensor(new_res['bboxes']).to(boxes_raw.dtype).reshape_as(boxes_raw)
             img_np = new_res['image']
             labels_new = torch.Tensor(new_res['class_labels']).to(labels_raw.dtype)
+        else:
+            return img, target
         img_new = Image.fromarray(img_np)
         target['boxes'] = boxes_new
         target['labels'] = labels_new
+        
         
         return img_new, target

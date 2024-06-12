@@ -1,4 +1,4 @@
-# Minimal setup for fine-tuning GroundingDINO (T / B)
+# Minimal setup for fine-tuning GroundingDINO (VLM)
 1. Modify **config/dataset_OD.json**, **config/label_map.json** and **config/annotations.json**
 2. Download [BERT](https://www.kaggle.com/datasets/virajjayant/bertbaseuncased) & [GroundingDINO SwinT](https://huggingface.co/alexgenovese/background-workflow/blob/1cbf8c24aa8a2e8d5ca6871800442b35ff6f9d48/groundingdino_swint_ogc.pth)/ [GroundingDINO SwinB](https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha2/groundingdino_swinb_cogcoor.pth)
 3. Commands to run & inference with GroundingDINO across various configuration

@@ -630,7 +630,6 @@ def build(image_set, args, datasetinfo):
         strong_aug = args.strong_aug
     except:
         strong_aug = True
-    print(img_folder, ann_file)
     dataset = CocoDetection(img_folder, ann_file, 
             transforms=make_coco_transforms(image_set, fix_size=args.fix_size, strong_aug=strong_aug, args=args), 
             return_masks=args.masks,
